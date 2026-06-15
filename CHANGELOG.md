@@ -1,3 +1,5 @@
+- Made explicit that the user has to create the var-pgsql-walbackup Podman volume before
+  running mgradm backup db enable
 - Added OS versions currently suported with OVAL in the product (bsc#1262664)
 - Added instructions to migrate from wicked to NetworkManager to Administration Guide
   (bsc#1257295)

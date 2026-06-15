@@ -23,10 +23,17 @@ The backup system is based on {postgresql} continuous archiving Write-Ahead Logg
 
 Continuous archiving reduces the risk of data loss by constantly backing up the transaction logs (WAL) to a dedicated volume.
 
-The backup system utilizes a dedicated Podman volume named [literal]``var-pgsql-walbackup`` to store:
+The backup system utilizes a dedicated, user-provided, Podman volume named [literal]``var-pgsql-walbackup`` to store:
 
 * A base backup (a full snapshot of the database).
 * WAL segments (incremental changes since the last base backup).
+
+This volume can be created by running the following command:
+
+[source,shell]
+----
+podman volume create var-pgsql-walbackup
+----
 
 
 [NOTE]
@@ -44,6 +51,7 @@ The restore procedure will restore everything from the backup location.
 
 * [command]``mgradm`` tool installed on the host.
 * {productname} server running in a Podman environment.
+* [literal]``var-pgsql-walbackup`` Podman volume existing on the host.
 
 
 
